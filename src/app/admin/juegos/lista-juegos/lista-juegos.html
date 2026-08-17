@@ -1,41 +1,39 @@
-<div class="container">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="mb-0">Gestión de Juegos</h2>
-    <button type="button" (click)="goRegistrarJuego()" class="btn btn-success px-4 py-2">Nuevo Juego</button>
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0 text-white">
+      Catálogo de Juegos <span class="badge bg-primary">{{ juegoList.length }}</span>
+    </h2>
+    <button (click)="goNewJuego()" type="button" class="btn btn-primary">Nuevo Juego</button>
   </div>
+  
+  <hr class="text-white" />
 
   <div class="card card-admin p-4 shadow-lg">
-    <table class="table table-hover align-middle">
-      <thead class="table-dark">
-        <tr>
-          <th>Imagen</th>
-          <th>ID</th>
-          <th>Nombre</th>
-          <th>Categoría</th>
-          <th>Precio</th>
-          <th class="text-center">Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (juego of lstJuegos; track $index) {
+    <div class="table-responsive">
+      <table class="table table-hover align-middle m-0">
+        <thead class="table-dark">
           <tr>
-            <td>
-              <img [src]="'/uploads/ImgJuegos/' + juego.imagen" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;">
-            </td>
-            <td>{{ juego.idJuegos }}</td>
-            <td>{{ juego.descripcion }}</td>
-            <td>{{ juego.categoria?.descripcion }}</td>
-            <td>S/. {{ juego.precio }}</td>
-            <td class="text-center">
-              <button type="button" (click)="goModificarJuego(juego.idJuegos)" class="btn btn-sm btn-primary">Editar</button>
-            </td>
+            <th scope="col" class="text-center">ID</th>
+            <th scope="col">Imagen</th>
+            <th scope="col">Descripción</th>
+            <th scope="col" class="text-end">Monto</th>
           </tr>
-        } @empty {
-          <tr>
-            <td colspan="6" class="text-center text-muted py-4">No hay juegos registrados.</td>
-          </tr>
-        }
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          @for (item of juegoList; track $index) {
+            <tr style="cursor: pointer;" (click)="goDetailJuego(item.idjuegos)">
+              <th scope="row" class="text-center">{{ item.idjuegos }}</th>
+              <td></td>
+              <td>{{ item.descripcion }}</td>
+              <td class="text-end">S/. {{ item.precio }}</td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="4" class="text-center text-muted py-4">Cargando catálogo...</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

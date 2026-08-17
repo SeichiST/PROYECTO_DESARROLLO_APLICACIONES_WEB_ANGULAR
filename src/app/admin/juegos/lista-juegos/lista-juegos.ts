@@ -1,5 +1,7 @@
-import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Juego } from '../../../model/Juego';
+import { Juegoservice } from '../juegoservice';
 
 @Component({
   selector: 'app-lista-juegos',
@@ -7,16 +9,35 @@ import { Router } from '@angular/router';
   templateUrl: './lista-juegos.html',
   styleUrl: './lista-juegos.css'
 })
-export class ListaJuegos {
-  private router = inject(Router);
+export class ListaJuegos implements OnInit {
+  juegoList: Juego[] = [];
 
-  lstJuegos: any[] = [];
+  constructor(
+    private juegoService: Juegoservice,
+    private router: Router,
+    private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef
+  ) {}
 
-  goRegistrarJuego() {
+  ngOnInit() {
+    this.juegoService.getJuegos().subscribe({
+      next: (res) => {
+        this.juegoList = res;
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        console.error('Error:', err.message);
+      }
+    });
+  }
+
+  goNewJuego() {
     this.router.navigate(['/admin/registrar-juego']);
   }
 
-  goModificarJuego(id: number) {
-    this.router.navigate(['/admin/modificar-juego', id]);
+  goDetailJuego(id: number | undefined) {
+    if (id) {
+      this.router.navigate(['/admin/modificar-juego', id]);
+    }
   }
 }
