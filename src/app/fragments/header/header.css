@@ -1,0 +1,42 @@
+header {
+    padding: 15px 25px;
+    background-color: rgb(242, 64, 93);
+}
+
+.navbar-nav .nav-link {
+    font-style: italic;
+    color: white;
+}
+
+header img {
+    height: 50px;
+    width: 50px;
+    margin: 2px 10px;
+    border-radius: 10%;
+}
+
+.dropdown-menu {
+    background-color: rgb(69, 69, 155);
+    border: 2px solid rgb(242, 64, 93);
+    border-radius: 10px;
+    padding: 10px 0;
+}
+
+.dropdown-item {
+    color: white;
+    padding: 8px 20px;
+}
+
+.dropdown-item:hover {
+    background-color: rgb(242, 64, 93);
+    color: white;
+}
+
+.carrito a {
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.carrito a:hover {
+    transform: scale(1.1);
+}

@@ -1,0 +1,56 @@
+<app-header />
+
+<section>
+  <div class="contenedor">
+    <div class="marcoContacto">
+      <h1 class="main-title text-center">Contáctanos</h1>
+
+      <div class="formulario">
+        @if (usuarioLogueado) {
+          <form (ngSubmit)="enviarMensaje()">
+            <div class="row mb-3 align-items-center">
+              <div class="col-3"><label class="form-label text-white">Nombre</label></div>
+              <div class="col-9">
+                <input type="text" class="form-control" [value]="usuarioLogueado.nombres + ' ' + usuarioLogueado.apellidos" readonly>
+              </div>
+            </div>
+
+            <div class="row mb-3 align-items-center">
+              <div class="col-3"><label class="form-label text-white">Correo</label></div>
+              <div class="col-9">
+                <input type="email" class="form-control" [value]="usuarioLogueado.correo" readonly>
+              </div>
+            </div>
+
+            <div class="row mb-3 align-items-center">
+              <div class="col-3"><label class="form-label text-white">Teléfono</label></div>
+              <div class="col-9">
+                <input type="text" class="form-control" [value]="usuarioLogueado.telefono" readonly>
+              </div>
+            </div>
+
+            <div class="row mb-3 align-items-start">
+              <div class="col-3"><label for="mensaje" class="form-label text-white">Mensaje</label></div>
+              <div class="col-9">
+                <textarea id="mensaje" name="mensaje" class="form-control" rows="4" [(ngModel)]="textoMensaje" placeholder="Ingresa el mensaje (Máximo 200 caracteres)" maxlength="200" required></textarea>
+              </div>
+            </div>
+
+            <div class="d-grid">
+              <button class="btn enviar" type="submit">Enviar Mensaje</button>
+            </div>
+          </form>
+        } @else {
+          <div class="alert alert-warning text-center p-5" role="alert" style="background-color: rgb(38, 43, 47, 0.5); color: rgb(255, 0, 0); border-color: #dc3545; border-radius: 10px;">
+            <i class="bi bi-person-x-fill mb-3 d-block" style="font-size: 3rem;"></i>
+            <h3 class="mt-2">¡Inicia sesión para contactarnos!</h3>
+            <p class="text-white">Debes crearte una cuenta</p>
+            <button type="button" class="btn btn-warning mt-2" (click)="goRegistro()">Crear Cuenta</button>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer />

@@ -1,0 +1,45 @@
+<div class="d-flex" style="min-height: 100vh;">
+  <div class="sidebar p-3 d-flex flex-column" style="width: 250px; background-color: rgba(0, 0, 0, 0.3);">
+    <a (click)="goInicio()" class="text-white text-decoration-none text-center mb-4 mt-2" style="cursor: pointer;">
+      <h3 style="color: var(--color-acento-principal); font-weight: bold;">MundoGamer</h3>
+      <small>Panel de Control</small>
+    </a>
+    <hr class="text-white">
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item mb-2">
+        <a class="nav-link text-white item-sidebar" style="cursor: pointer;" (click)="goListaJuegos()">
+          <i class="bi bi-joystick"></i> Gestión de Juegos
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a class="nav-link text-white item-sidebar" style="cursor: pointer;" (click)="goListaCategorias()">
+          <i class="bi bi-list-stars"></i> Categorías
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a class="nav-link text-white item-sidebar" style="cursor: pointer;" (click)="goListaUsuarios()">
+          <i class="bi bi-people-fill"></i> Usuarios
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a class="nav-link text-white item-sidebar" style="cursor: pointer;" (click)="goMensajes()">
+          <i class="bi bi-chat-left-dots-fill"></i> Mensajes
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a class="nav-link text-white item-sidebar" style="cursor: pointer;" (click)="goListaVentas()">
+          <i class="bi bi-cart-check-fill"></i> Ventas
+        </a>
+      </li>
+      <li class="nav-item mb-2 text-center mt-3">
+        <button type="button" (click)="logout()" class="btn btn-link text-danger text-decoration-none">
+          <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <div class="flex-grow-1 p-4 w-100">
+    <router-outlet />
+  </div>
+</div>

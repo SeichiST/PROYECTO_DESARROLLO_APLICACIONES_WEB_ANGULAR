@@ -1,0 +1,75 @@
+<app-header />
+
+<section class="container flex-grow-1">
+  <div class="marcoRegistro">
+    <h2 class="text-center mb-4 texto-acento"><i class="bi bi-person-plus-fill me-2"></i>Crear una Cuenta</h2>
+
+    <form (ngSubmit)="registrarCliente()">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Nombres</label>
+          <input type="text" class="form-control" name="nombres" [(ngModel)]="cliente.nombres" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Apellidos</label>
+          <input type="text" class="form-control" name="apellidos" [(ngModel)]="cliente.apellidos" required>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">DNI</label>
+          <input type="text" class="form-control" name="dni" [(ngModel)]="cliente.dni" maxlength="12" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Teléfono</label>
+          <input type="tel" class="form-control" name="telefono" [(ngModel)]="cliente.telefono" maxlength="20" required>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Dirección</label>
+        <input type="text" class="form-control" name="direccion" [(ngModel)]="cliente.direccion" maxlength="50" required>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Fecha de Nacimiento</label>
+          <input type="date" class="form-control" name="fechaNacimiento" [(ngModel)]="cliente.fechaNacimiento" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Sexo</label>
+          <select class="form-select" name="sexo" [(ngModel)]="cliente.sexo" required>
+            <option value="" disabled selected>Seleccione...</option>
+            <option value="M">Masculino</option>
+            <option value="F">Femenino</option>
+          </select>
+        </div>
+      </div>
+
+      <hr class="mt-4 mb-4" style="border-color: rgb(242, 64, 93); opacity: 0.5;">
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Correo Electrónico</label>
+          <input type="email" class="form-control" name="correo" [(ngModel)]="cliente.correo" maxlength="50" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Contraseña</label>
+          <input type="password" class="form-control" name="password" [(ngModel)]="cliente.password" maxlength="255" required>
+        </div>
+      </div>
+
+      <div class="d-grid mt-4">
+        <button type="submit" class="btn btn-tema fw-bold py-2">Registrarme</button>
+      </div>
+      <div class="text-center mt-3">
+        <a (click)="goInicio()" class="text-white text-decoration-none" style="opacity: 0.8; cursor: pointer;">
+          ¿Ya tienes una cuenta? <span class="texto-acento fw-bold">Inicia sesión</span>
+        </a>
+      </div>
+    </form>
+  </div>
+</section>
+
+<app-footer />

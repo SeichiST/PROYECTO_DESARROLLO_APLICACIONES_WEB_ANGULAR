@@ -1,0 +1,106 @@
+:root {
+    --color-fondo-principal: rgb(69, 69, 155);
+    --color-acento-principal: rgb(242, 64, 93);
+    --color-secundario-claro: rgb(255, 127, 127);
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: var(--color-fondo-principal) !important;
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* DataTables / Tablas generales */
+.dt-container .dt-length label,
+.dt-container .dt-search label,
+.dt-container .dt-info {
+    color: white !important; 
+    font-weight: 500;
+}
+
+.dt-container .dt-search input,
+.dt-container .dt-length select {
+    background-color: transparent !important;
+    color: white !important;
+    border: 1px solid var(--color-acento-principal) !important;
+    border-radius: 5px;
+    padding: 4px 10px;
+}
+
+table.dataTable tbody tr,
+table.dataTable tbody td {
+    background-color: transparent !important;
+    color: white !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--color-acento-principal) !important;
+    border-color: var(--color-acento-principal) !important;
+    color: white !important;
+}
+
+.pagination .page-link {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+}
+
+/* Quitar el fondo blanco de Bootstrap a las tarjetas del Admin */
+.card-admin {
+    background-color: rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid var(--color-acento-principal) !important;
+    border-radius: 12px;
+    color: white !important;
+}
+
+/* Quitar el fondo blanco de Bootstrap a las tablas */
+.card-admin .table,
+.table-hover {
+    --bs-table-bg: transparent !important;
+    --bs-table-color: white !important;
+    background-color: transparent !important;
+    color: white !important;
+}
+
+/* Encabezados de tabla */
+.card-admin .table thead,
+.table-dark thead {
+    background-color: var(--color-acento-principal) !important;
+    color: white !important;
+}
+
+/* Filas y celdas transparentes */
+.card-admin .table tbody tr,
+.card-admin .table tbody td,
+.card-admin .table tbody th {
+    background-color: transparent !important;
+    color: white !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Efecto hover en filas */
+.card-admin .table-hover tbody tr:hover td,
+.card-admin .table-hover tbody tr:hover th {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+}
+
+/* Inputs y selects oscuros dentro del panel Admin */
+.card-admin .form-control,
+.card-admin .form-select {
+    background-color: rgba(0, 0, 0, 0.4) !important;
+    border: 1px solid var(--color-acento-principal) !important;
+    color: white !important;
+    border-radius: 5px;
+}
+
+.card-admin .form-control:focus,
+.card-admin .form-select:focus {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    border-color: var(--color-acento-principal) !important;
+    box-shadow: 0 0 8px rgba(242, 64, 93, 0.5) !important;
+    color: white !important;
+}

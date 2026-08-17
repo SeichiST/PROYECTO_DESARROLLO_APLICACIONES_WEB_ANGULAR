@@ -1,0 +1,90 @@
+<div class="container mt-5">
+  <div class="card card-admin p-4 shadow-lg">
+    <h1 class="text-center text-white mb-4">Registrar Usuario</h1>
+
+    <form (ngSubmit)="guardarUsuario()">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label class="form-label text-white">ID Cliente</label>
+          <input type="text" class="form-control" [value]="cliente.idCliente" readonly>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label text-white">Estado</label>
+          <select class="form-select" name="estado" [(ngModel)]="cliente.estado">
+            <option value="1">Activo</option>
+            <option value="0">Bloqueado / Inactivo</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label class="form-label text-white">Nombres</label>
+          <input type="text" class="form-control" name="nombres" [(ngModel)]="cliente.nombres" required>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label text-white">Apellidos</label>
+          <input type="text" class="form-control" name="apellidos" [(ngModel)]="cliente.apellidos" required>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label class="form-label text-white">DNI</label>
+          <input type="text" class="form-control" name="dni" [(ngModel)]="cliente.dni" required>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label text-white">Teléfono</label>
+          <input type="text" class="form-control" name="telefono" [(ngModel)]="cliente.telefono" required>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label class="form-label text-white">Correo</label>
+          <input type="email" class="form-control" name="correo" [(ngModel)]="cliente.correo" required>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label text-white">Contraseña</label>
+          <input type="password" class="form-control" name="password" [(ngModel)]="cliente.password" required>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label class="form-label text-white">Sexo</label>
+          <select class="form-select" name="sexo" [(ngModel)]="cliente.sexo">
+            <option value="M">Masculino</option>
+            <option value="F">Femenino</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label text-white">Fecha de Nacimiento</label>
+          <input type="date" class="form-control" name="fechaNacimiento" [(ngModel)]="cliente.fechaNacimiento" required>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label class="form-label text-white">Dirección</label>
+          <input type="text" class="form-control" name="direccion" [(ngModel)]="cliente.direccion" required>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label text-white">Rol de Usuario</label>
+          <select class="form-select" name="rol" [(ngModel)]="cliente.rol" required>
+            <option value="" disabled selected>Seleccione un rol</option>
+            <option value="CLIENTE">Cliente</option>
+            <option value="ADMIN">Administrador</option>
+          </select>
+        </div>
+      </div>
+
+      <hr class="border-secondary mb-4">
+
+      <div class="d-flex justify-content-end">
+        <button type="button" (click)="goListaUsuarios()" class="btn btn-outline-light me-2">Cancelar</button>
+        <button type="submit" class="btn btn-success">Registrar</button>
+      </div>
+    </form>
+  </div>
+</div>

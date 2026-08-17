@@ -1,0 +1,22 @@
+<div class="container mt-5">
+  <div class="card card-admin p-4 shadow-lg">
+    <h1 class="text-center text-white mb-4">Registrar Nueva Categoría</h1>
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-6">
+        <form (ngSubmit)="guardarCategoria()">
+          <div class="col-md-12 mb-3">
+            <label class="form-label text-white">Descripción de la Categoría</label>
+            <input type="text" class="form-control" name="descripcion" [(ngModel)]="categoria.descripcion" required>
+          </div>
+
+          <div class="col-md-12 d-flex justify-content-between mt-4">
+            <button type="button" (click)="goListaCategorias()" class="btn btn-outline-light">
+              <i class="fa-solid fa-reply"></i> Regresar
+            </button>
+            <button type="submit" class="btn btn-success">Registrar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<header class="d-flex justify-content-between align-items-center">
+  <div class="d-flex align-items-center">
+    <a (click)="goInicio()" style="cursor: pointer;">
+      <img src="img/logo.png" alt="Logo">
+    </a>
+    <ul class="nav navbar-nav d-flex flex-row gap-4 ms-4">
+      <li class="nav-item">
+        <a class="nav-link" style="cursor: pointer;" (click)="goInicio()">Inicio</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" style="cursor: pointer;" (click)="goJuegos()">Juegos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" style="cursor: pointer;" (click)="goNosotros()">Nosotros</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" style="cursor: pointer;" (click)="goContacto()">Contáctanos</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="d-flex align-items-center">
+
+    @if (!usuarioLogueado) {
+      <button type="button" class="btn btn-dark text-white" (click)="goRegistro()">Crear Cuenta</button>
+    } @else {
+      <div class="dropdown">
+        <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown">
+          <i class="bi bi-person-circle me-1"></i> {{ usuarioLogueado.nombres }}
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" style="cursor: pointer;" (click)="goHistorial()">Mis Compras</a></li>
+          @if (usuarioLogueado.rol === 'ADMIN') {
+            <li><a class="dropdown-item" style="cursor: pointer;" (click)="goAdmin()">Panel Admin</a></li>
+          }
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" style="cursor: pointer;" (click)="logout()">Cerrar Sesión</a></li>
+        </ul>
+      </div>
+    }
+
+    <div class="carrito">
+      <a (click)="goCarrito()" class="text-white fs-4" style="cursor: pointer;">
+        <i class="bi bi-cart4"></i>
+      </a>
+    </div>
+  </div>
+</header>

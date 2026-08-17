@@ -1,0 +1,51 @@
+<app-header />
+
+<main class="container-fluid hero-main">
+  <div class="row">
+    <section class="col-lg-5 p-5 hero-content-left">
+      @if (!usuarioLogueado) {
+        <div>
+          <h1 class="display-3 fw-bold"><span class="text-warning">MundoGamer</span></h1>
+          <p class="lead text-muted my-3">
+            ¡Bienvenido a la comunidad gamer más grande! Encuentra los mejores títulos y reseñas exclusivas.
+          </p>
+
+          <form class="login-form mt-5" (ngSubmit)="login()">
+            <input type="email" class="form-control form-control-lg mb-3 custom-input" placeholder="Email" name="email" [(ngModel)]="loginData.email" required>
+            <input type="password" class="form-control form-control-lg mb-3 custom-input" placeholder="Contraseña" name="password" [(ngModel)]="loginData.password" required>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <div class="d-grid gap-2 d-md-block">
+                <button type="submit" class="btn btn-warning btn-lg me-3 mb-1 custom-btn-primary">Iniciar</button>
+                <button type="button" class="btn btn-outline-dark btn-lg mb-1 custom-btn-secondary" (click)="goRegistro()">Crear cuenta</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      } @else {
+        <div class="welcome-section">
+          <h2 class="welcome-title">¡Bienvenido de nuevo!</h2>
+          <h1 class="welcome-name">{{ usuarioLogueado.nombres }} {{ usuarioLogueado.apellidos }}</h1>
+          <p class="lead text-white mt-4"><i class="bi bi-emoji-smile"></i> ¿Listo para tu próxima aventura?</p>
+          <p class="text-white-50"><i class="bi bi-envelope"></i> {{ usuarioLogueado.correo }}</p>
+          <button type="button" class="btn btn-logout mt-4" (click)="logout()">
+            <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+          </button>
+        </div>
+      }
+
+      <div class="social-links mt-4">
+        <a class="text-muted me-3" style="cursor: pointer;"><i class="bi bi-instagram"></i></a>
+        <a class="text-muted me-3" style="cursor: pointer;"><i class="bi bi-twitter-x"></i></a>
+        <a class="text-muted me-3" style="cursor: pointer;"><i class="bi bi-discord"></i></a>
+      </div>
+    </section>
+
+    <section class="col-lg-7">
+      <video class="video" autoplay muted loop playsinline>
+        <source src="img/Manos.webm" type="video/webm">
+      </video>
+    </section>
+  </div>
+</main>
+
+<app-footer />

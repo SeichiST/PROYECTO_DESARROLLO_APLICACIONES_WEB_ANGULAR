@@ -1,0 +1,36 @@
+<div class="container">
+  <h2 class="mb-4">Historial de Ventas</h2>
+  <div class="card card-admin p-4 shadow-lg">
+    <table class="table table-hover align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>ID Venta</th>
+          <th>Cliente</th>
+          <th>Fecha</th>
+          <th class="text-end">Monto Total</th>
+          <th class="text-center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (v of lstVentas; track $index) {
+          <tr>
+            <td>{{ v.idVenta }}</td>
+            <td>{{ v.cliente?.nombres }}</td>
+            <td>{{ v.fechaVenta }}</td>
+            <td class="text-end">S/. {{ v.montoTotal }}</td>
+            <td class="text-center">
+              <button type="button" (click)="goDetalleVenta(v.idVenta)" class="btn btn-sm btn-info text-white me-2">Ver Productos</button>
+              <button type="button" (click)="descargarBoleta(v.idVenta)" class="btn btn-sm btn-danger">
+                <i class="bi bi-file-pdf"></i> PDF
+              </button>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="5" class="text-center text-muted py-4">No hay ventas registradas.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

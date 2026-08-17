@@ -1,0 +1,76 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+section {
+    flex: 1;
+    margin: 1%;
+}
+
+.Integrantes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0;
+}
+
+section h2 {
+    text-align: center;
+    font-size: 40px;
+    margin: 20px;
+}
+
+.Perfil {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+section figure {
+    background-color: rgb(242, 64, 93);
+    border-radius: 20px;
+    margin: 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 250px;
+    overflow: hidden;
+}
+
+section img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 20px;
+    display: block;
+}
+
+section figcaption {
+    font-size: 20px;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+    padding: 15px 5px;
+    color: white;
+}
+
+.Nosotros {
+    background-color: rgba(255, 255, 255, 0.23);
+    padding: 20px 30px;
+    border-radius: 20px;
+    margin: 25px auto 40px;
+    max-width: 1050px;
+    text-align: center;
+}
+
+.Nosotros h1 {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.Nosotros p {
+    font-size: 20px;
+    line-height: 1.6;
+}

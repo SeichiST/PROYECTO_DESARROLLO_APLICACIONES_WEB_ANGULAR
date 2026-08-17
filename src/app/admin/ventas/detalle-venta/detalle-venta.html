@@ -1,0 +1,51 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-9">
+      <div class="card card-admin p-5 shadow-lg">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold text-uppercase">Detalle de la Compra</h2>
+          <p class="text-white-50 small mb-0">MundoGamer - Comprobante de Venta</p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table align-middle text-white m-0" style="background-color: transparent !important;">
+            <thead>
+              <tr>
+                <th class="py-3 ps-3 text-white border-0">Juego</th>
+                <th class="py-3 text-center text-white border-0">Cantidad</th>
+                <th class="py-3 text-end text-white border-0">Precio Unitario</th>
+                <th class="py-3 pe-3 text-end text-white border-0">Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (d of lstDetalles; track $index) {
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                  <td class="py-3 ps-3 text-white border-0">{{ d.juego?.descripcion }}</td>
+                  <td class="py-3 text-center text-white border-0">{{ d.cantidad }}</td>
+                  <td class="py-3 text-end text-white border-0">S/. {{ d.precio }}</td>
+                  <td class="py-3 pe-3 text-end border-0 fw-bold text-white">S/. {{ d.precio * d.cantidad }}</td>
+                </tr>
+              }
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="2" class="border-0"></td>
+                <td class="pt-4 text-end fs-5 fw-bold text-white border-0">Total General:</td>
+                <td class="pt-4 pe-3 text-end fs-4 fw-bold text-white border-0">S/. {{ totalMonto }}</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <div class="mt-5 d-flex justify-content-between align-items-center">
+          <button type="button" (click)="goListaVentas()" class="btn btn-cancelar px-4 py-2" style="max-width: 150px;">
+            <i class="bi bi-arrow-left me-2"></i>Volver
+          </button>
+          <button type="button" (click)="descargarBoleta()" class="btn btn-success px-4 py-2 border-0 fw-bold btn-tema">
+            <i class="bi bi-printer-fill me-2"></i> Imprimir PDF
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

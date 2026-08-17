@@ -1,0 +1,47 @@
+<div class="container mt-5">
+  <div class="card card-admin p-4 shadow-lg">
+    <h1 class="text-center text-white mb-4">Registrar Nuevo Juego</h1>
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-8">
+        <form class="row g-3" (ngSubmit)="guardarJuego()">
+          <div class="col-md-12">
+            <label class="form-label text-white">Nombre del Juego</label>
+            <input type="text" class="form-control" name="descripcion" [(ngModel)]="juego.descripcion" required>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label text-white">Categoría</label>
+            <select class="form-select" name="categoria" [(ngModel)]="juego.categoria.idCategoria" required>
+              <option value="" disabled selected>--Seleccione--</option>
+              @for (cat of lstCategorias; track $index) {
+                <option [value]="cat.idCategoria">{{ cat.descripcion }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label text-white">Precio</label>
+            <div class="input-group">
+              <span class="input-group-text bg-dark text-white border-0">S/.</span>
+              <input type="number" class="form-control" step="0.01" name="precio" [(ngModel)]="juego.precio" required>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <label class="form-label text-white">Imagen del Juego</label>
+            <input type="file" (change)="onFileSelected($event)" class="form-control" accept="image/*" required>
+          </div>
+
+          <div class="col-md-12 d-flex justify-content-between mt-4">
+            <button type="button" (click)="goListaJuegos()" class="btn btn-outline-light">
+              <i class="fa-solid fa-reply"></i> Regresar
+            </button>
+            <button type="submit" class="btn btn-success">
+              <i class="fa-solid fa-floppy-disk"></i> Registrar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

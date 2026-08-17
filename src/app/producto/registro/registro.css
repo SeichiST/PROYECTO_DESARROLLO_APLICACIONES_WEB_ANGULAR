@@ -1,0 +1,51 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.marcoRegistro {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgb(242, 64, 93); 
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    max-width: 800px;
+    margin: 40px auto;
+    color: white;
+}
+
+.marcoRegistro .form-control,
+.marcoRegistro .form-select {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.marcoRegistro .form-control:focus,
+.marcoRegistro .form-select:focus {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    border-color: rgb(242, 64, 93) !important;
+    box-shadow: 0 0 8px rgba(242, 64, 93, 0.5) !important;
+    outline: none;
+}
+
+.btn-tema {
+    background-color: rgb(242, 64, 93);
+    color: white;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-tema:hover {
+    background-color: rgb(200, 45, 70);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.texto-acento {
+    color: rgb(242, 64, 93);
+}

@@ -1,0 +1,46 @@
+<app-header />
+
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="text-uppercase fw-bold m-0"><i class="bi bi-bag-heart-fill texto-acento"></i> Mis Compras</h2>
+    <button type="button" (click)="goInicio()" class="btn btn-cancelar px-4 py-2" style="max-width: 200px;">
+      <i class="bi bi-house-door-fill me-2"></i>Ir al Inicio
+    </button>
+  </div>
+
+  <div class="card card-admin p-4 shadow-lg">
+    <table class="table table-hover align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>Código de Orden</th>
+          <th>Fecha de Compra</th>
+          <th class="text-end">Total Pagado</th>
+          <th class="text-center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (v of lstVentas; track $index) {
+          <tr>
+            <td>{{ v.idVenta }}</td>
+            <td>{{ v.fechaVenta }}</td>
+            <td class="text-end fw-bold texto-acento">S/. {{ v.montoTotal }}</td>
+            <td class="text-center">
+              <button type="button" (click)="goDetalleCompra(v.idVenta)" class="btn btn-sm btn-info text-white me-2">
+                <i class="bi bi-eye-fill"></i> Ver Detalles
+              </button>
+              <button type="button" (click)="descargarBoleta(v.idVenta)" class="btn btn-sm btn-danger">
+                <i class="bi bi-file-pdf"></i> PDF
+              </button>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="4" class="text-center text-muted py-4">Aún no has realizado ninguna compra en la tienda.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<app-footer />

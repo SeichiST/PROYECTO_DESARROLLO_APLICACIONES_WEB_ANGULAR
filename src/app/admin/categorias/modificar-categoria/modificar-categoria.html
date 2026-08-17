@@ -1,0 +1,26 @@
+<div class="container" style="max-width: 700px;">
+  <div class="mb-4">
+    <h2 class="mb-0">Editar Categoría</h2>
+  </div>
+
+  <div class="card card-admin p-4 shadow-lg">
+    <form (ngSubmit)="actualizarCategoria()">
+      <div class="mb-3">
+        <label class="form-label">ID Categoría</label>
+        <input type="text" class="form-control" [value]="categoria.idCategoria" readonly>
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label">Descripción</label>
+        <input type="text" class="form-control" name="descripcion" [(ngModel)]="categoria.descripcion" required>
+      </div>
+
+      <hr class="border-secondary mb-4">
+
+      <div class="d-flex justify-content-end">
+        <button type="button" (click)="goListaCategorias()" class="btn btn-outline-light me-2">Cancelar</button>
+        <button type="submit" class="btn btn-success px-4">Guardar Categoría</button>
+      </div>
+    </form>
+  </div>
+</div>
