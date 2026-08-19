@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Header } from '../../fragments/header/header';
 import { Footer } from '../../fragments/footer/footer';
+import { AuthService } from '../../services/auth.service';
+import { Cliente } from '../../model/Cliente';
 
 @Component({
   selector: 'app-registro',
@@ -12,6 +14,7 @@ import { Footer } from '../../fragments/footer/footer';
 })
 export class Registro {
   private router = inject(Router);
+  private authService = inject(AuthService);
 
   cliente: any = {
     nombres: '',
@@ -19,14 +22,22 @@ export class Registro {
     dni: '',
     telefono: '',
     direccion: '',
-    fechaNacimiento: '',
+    fechanacimiento: '',
     sexo: '',
     correo: '',
     password: ''
   };
 
   registrarCliente() {
-    console.log('Registrando cliente:', this.cliente);
+    this.authService.registro(this.cliente).subscribe({
+      next: (res) => {
+        alert(res.mensaje || '¡Cuenta registrada con éxito!');
+        this.router.navigate(['/producto/inicio']);
+      },
+      error: (err) => {
+        alert(err.error?.mensaje || 'Error al registrar la cuenta');
+      }
+    });
   }
 
   goInicio() {

@@ -1,5 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { UsuarioSesion } from '../../model/UsuarioSesion';
 
 @Component({
   selector: 'app-header',
@@ -7,11 +9,17 @@ import { Router } from '@angular/router';
   templateUrl: './header.html',
   styleUrl: './header.css'
 })
-export class Header {
+export class Header implements OnInit {
   private router = inject(Router);
+  private authService = inject(AuthService);
 
-  // Variable de usuario (null si no está autenticado)
-  usuarioLogueado: any = null;
+  usuarioLogueado: UsuarioSesion | null = null;
+
+  ngOnInit() {
+    this.authService.usuario$.subscribe((user) => {
+      this.usuarioLogueado = user;
+    });
+  }
 
   goInicio() {
     this.router.navigate(['/producto/inicio']);
@@ -46,7 +54,7 @@ export class Header {
   }
 
   logout() {
-    this.usuarioLogueado = null;
+    this.authService.logout();
     this.router.navigate(['/producto/inicio']);
   }
 }
