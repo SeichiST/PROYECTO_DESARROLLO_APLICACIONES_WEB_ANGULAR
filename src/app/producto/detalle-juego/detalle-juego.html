@@ -1,29 +1,74 @@
 <app-header />
 
 <div class="container mt-5">
+
   <div class="d-flex mb-4">
-    <button type="button" (click)="goCatalogo()" class="btn btn-warning me-2">← Volver al catálogo</button>
+    <button
+      type="button"
+      (click)="goCatalogo()"
+      class="btn btn-warning me-2">
+      ← Volver al catálogo
+    </button>
   </div>
 
-  <div class="card card-detalle p-4" style="background-color: rgba(0,0,0,0.3); border: 1px solid rgb(242, 64, 93); color: white;">
+  <div
+    class="card card-detalle p-4"
+    style="background-color: rgba(0,0,0,0.3); border: 1px solid rgb(242, 64, 93); color: white;">
+
     <div class="row g-4">
+
+      <!-- Imagen -->
       <div class="col-md-4 text-center">
-        <img [src]="'/uploads/ImgJuegos/' + juego.imagen" class="img-juego img-fluid rounded" alt="Portada">
+        <img
+          [src]="'http://localhost:8085/uploads/juegos/' + (juego?.imagen || '')"
+          class="img-juego img-fluid rounded"
+          alt="Portada">
       </div>
 
+      <!-- Información -->
       <div class="col-md-8">
-        <h2 class="mb-3">{{ juego.descripcion }}</h2>
-        <p><strong>ID:</strong> {{ juego.idJuegos }}</p>
-        <p><strong>Precio:</strong> S/. {{ juego.precio }}</p>
 
-        <form (ngSubmit)="agregarAlCarrito()" class="mt-4">
-          <label class="form-label"><strong>Cantidad</strong></label>
-          <input [(ngModel)]="cantidad" name="cantidad" type="number" class="form-control w-25 mb-3" min="1" value="1">
-          <button type="submit" class="btn btn-primary btn-lg">Agregar al carrito</button>
+        <h2 class="mb-3">
+          {{ juego?.descripcion }}
+        </h2>
+
+        <p>
+          <strong>ID:</strong> {{ juego?.idjuegos }}
+        </p>
+
+        <p>
+          <strong>Precio:</strong> S/. {{ juego?.precio }}
+        </p>
+
+        <form
+          (ngSubmit)="agregarAlCarrito()"
+          class="mt-4">
+
+          <label class="form-label">
+            <strong>Cantidad</strong>
+          </label>
+
+          <input
+            [(ngModel)]="cantidad"
+            name="cantidad"
+            type="number"
+            class="form-control w-25 mb-3"
+            min="1">
+
+          <button
+            type="submit"
+            class="btn btn-primary btn-lg">
+            Agregar al carrito
+          </button>
+
         </form>
+
       </div>
+
     </div>
+
   </div>
+
 </div>
 
 <app-footer />

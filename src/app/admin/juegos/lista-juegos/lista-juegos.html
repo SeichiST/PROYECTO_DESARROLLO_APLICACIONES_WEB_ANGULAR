@@ -23,7 +23,7 @@
           @for (item of juegoList; track $index) {
             <tr style="cursor: pointer;" (click)="goDetailJuego(item.idjuegos)">
               <th scope="row" class="text-center">{{ item.idjuegos }}</th>
-              <td></td>
+              <td><img [src]="'http://localhost:8085/uploads/juegos/' + item.imagen" class="img-fluid" style="max-height: 70px;" alt="Portada"></td>
               <td>{{ item.descripcion }}</td>
               <td class="text-end">S/. {{ item.precio }}</td>
             </tr>

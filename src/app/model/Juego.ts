@@ -1,8 +1,10 @@
+import { Categoria } from "./Categoria";
+
 export interface Juego {
-    idjuegos?: number;
+    idjuegos: number;
     descripcion: string;
     precio: number;
     imagen: string;
-    idcategoria: string;
+    categoria: Categoria;
     activo: boolean;
 }

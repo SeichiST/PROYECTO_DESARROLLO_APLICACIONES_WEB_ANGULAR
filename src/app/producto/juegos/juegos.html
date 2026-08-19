@@ -13,7 +13,7 @@
               🎮 Todos los juegos
             </li>
             @for (cat of lstCategorias; track $index) {
-              <li class="list-group-item list-group-item-action bg-transparent text-white border-secondary" style="cursor: pointer;" (click)="filtrarPorCategoria(cat.idCategoria)">
+              <li class="list-group-item list-group-item-action bg-transparent text-white border-secondary" style="cursor: pointer;" (click)="filtrarPorCategoria(cat.idcategoria)">
                 {{ cat.descripcion }}
               </li>
             }
@@ -24,11 +24,11 @@
       <div class="col-md-9" id="zona-juegos">
         <h2 class="text-white mb-4">Juegos</h2>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-          @for (juego of lstJuegos; track $index) {
+          @for (juego of lstJuegosFiltrados; track $index)  {
             <div class="col">
-              <div class="GameCardLink text-decoration-none" style="cursor: pointer;" (click)="goDetallesJuego(juego.idJuegos)">
+              <div class="GameCardLink text-decoration-none" style="cursor: pointer;" (click)="goDetallesJuego(juego.idjuegos)">
                 <div class="h-100 d-flex flex-column" style="border-radius: 12px; background-color: rgba(255,255,255,0.05); padding-bottom: 10px;">
-                  <img [src]="'/uploads/ImgJuegos/' + juego.imagen" class="card-img-top" style="height: 300px; object-fit: cover; border-radius: 12px 12px 0 0;" alt="Portada">
+                  <img [src]="'http://localhost:8085/uploads/juegos/' + juego.imagen" class="card-img-top" style="height: 300px; object-fit: cover; border-radius: 12px 12px 0 0;" alt="Portada">
                   <div class="card-body text-center p-3 d-flex flex-column justify-content-center flex-grow-1">
                     <h5 class="card-title text-white mb-0">{{ juego.descripcion }}</h5>
                     <p class="text-warning fw-bold fs-5 mb-0 mt-1">S/. {{ juego.precio }}</p>

@@ -14,13 +14,17 @@ export class Header implements OnInit {
   private authService = inject(AuthService);
 
   usuarioLogueado: UsuarioSesion | null = null;
-
+  isDropdownOpen: boolean = false;
   ngOnInit() {
     this.authService.usuario$.subscribe((user) => {
       this.usuarioLogueado = user;
     });
   }
 
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+  
   goInicio() {
     this.router.navigate(['/producto/inicio']);
   }

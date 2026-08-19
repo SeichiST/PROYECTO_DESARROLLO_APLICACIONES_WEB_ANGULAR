@@ -19,18 +19,24 @@
     </ul>
   </div>
 
-  <div class="d-flex align-items-center">
-
+  <div class="d-flex align-items-center gap-3">
     @if (!usuarioLogueado) {
       <button type="button" class="btn btn-dark text-white" (click)="goRegistro()">Crear Cuenta</button>
     } @else {
-      <div class="dropdown">
-        <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown">
+      <div class="dropdown position-relative">
+        <button 
+          class="btn btn-warning dropdown-toggle" 
+          type="button" 
+          (click)="toggleDropdown()"
+          [class.show]="isDropdownOpen">
           <i class="bi bi-person-circle me-1"></i> {{ usuarioLogueado.nombres }}
         </button>
-        <ul class="dropdown-menu dropdown-menu-end">
+        <ul 
+          class="dropdown-menu dropdown-menu-end" 
+          [class.show]="isDropdownOpen" 
+          style="position: absolute; right: 0; margin-top: 5px;">
           <li><a class="dropdown-item" style="cursor: pointer;" (click)="goHistorial()">Mis Compras</a></li>
-          @if (usuarioLogueado.rol === 'ADMIN') {
+          @if (usuarioLogueado.rol?.includes('ADMIN')) {
             <li><a class="dropdown-item" style="cursor: pointer;" (click)="goAdmin()">Panel Admin</a></li>
           }
           <li><hr class="dropdown-divider"></li>

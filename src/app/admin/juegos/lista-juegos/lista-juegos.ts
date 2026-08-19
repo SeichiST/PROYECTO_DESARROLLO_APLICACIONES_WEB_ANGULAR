@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Juego } from '../../../model/Juego';
-import { Juegoservice } from '../juegoservice';
+import { Juegoservice } from '../../../service/juegoservice';
 
 @Component({
   selector: 'app-lista-juegos',

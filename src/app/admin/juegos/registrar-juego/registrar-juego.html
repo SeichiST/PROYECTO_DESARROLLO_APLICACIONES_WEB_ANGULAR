@@ -11,10 +11,10 @@
 
           <div class="col-md-6">
             <label class="form-label text-white">Categoría</label>
-            <select class="form-select" name="categoria" [(ngModel)]="juego.categoria.idCategoria" required>
+            <select class="form-select" name="categoria" [(ngModel)]="juego.categoria.idcategoria" required>
               <option value="" disabled selected>--Seleccione--</option>
               @for (cat of lstCategorias; track $index) {
-                <option [value]="cat.idCategoria">{{ cat.descripcion }}</option>
+                <option [value]="cat.idcategoria">{{ cat.descripcion }}</option>
               }
             </select>
           </div>
