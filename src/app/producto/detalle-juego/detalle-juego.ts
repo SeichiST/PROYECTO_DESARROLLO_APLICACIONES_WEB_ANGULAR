@@ -1,10 +1,11 @@
-import { Component, inject, ChangeDetectorRef, OnInit  } from '@angular/core';
+import { Component, inject, ChangeDetectorRef, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Header } from '../../fragments/header/header';
 import { Footer } from '../../fragments/footer/footer';
 import { JuegoService } from '../../dashboard/juego/juegoservice';
 import { Juego } from '../../model/Juego';
+import { CarritoService } from '../../service/carritoservice';
 
 @Component({
   selector: 'app-detalle-juego',
@@ -16,16 +17,17 @@ export class DetalleJuego implements OnInit {
   private router = inject(Router);
   private route = inject(ActivatedRoute);
   private juegoService = inject(JuegoService);
+  private carritoService = inject(CarritoService);
   private cdr = inject(ChangeDetectorRef);
+  
   cantidad: number = 1;
-    juego!: Juego;
+  juego!: Juego;
 
-    ngOnInit() {
+  ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
     this.juegoService.getJuegoById(id).subscribe({
       next: (res) => {
-        console.log('Juego recibido:', res);
         this.juego = res;
         this.cdr.detectChanges();   
       },
@@ -33,18 +35,15 @@ export class DetalleJuego implements OnInit {
         console.error('Error al cargar el juego:', err);
       }
     });
-}
+  }
 
   goCatalogo() {
     this.router.navigate(['/producto/juegos']);
   }
 
-   agregarAlCarrito() {
-    console.log(
-      'Agregado al carrito:',
-      this.juego,
-      'Cantidad:',
-      this.cantidad
-    );
+  agregarAlCarrito() {
+    this.carritoService.agregarItem(this.juego, this.cantidad);
+    alert('¡' + this.juego.descripcion + ' agregado al carrito exitosamente!');
+    
   }
 }

@@ -21,12 +21,17 @@
         <tbody>
           @for (item of carritoList; track $index) {
             <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
-              <td class="py-3 ps-3 text-white border-0">{{ item.descripcion }}</td>
-              <td class="py-3 text-end text-white border-0">S/. {{ item.precio }}</td>
+              <td class="py-3 ps-3 text-white border-0">
+                <div class="d-flex align-items-center">
+                  <img [src]="'http://localhost:8085/uploads/juegos/' + item.juego.imagen" alt="{{ item.juego.descripcion }}" class="rounded me-3 shadow-sm" style="width: 65px; height: 65px; object-fit: cover;">
+                  <span class="fw-bold">{{ item.juego.descripcion }}</span>
+                </div>
+              </td>
+              <td class="py-3 text-end text-white border-0">S/. {{ item.juego.precio }}</td>
               <td class="py-3 text-center text-white border-0">{{ item.cantidad }}</td>
-              <td class="py-3 text-end border-0 fw-bold text-white">S/. {{ item.precio * item.cantidad }}</td>
+              <td class="py-3 text-end border-0 fw-bold text-white">S/. {{ item.subtotal }}</td>
               <td class="py-3 pe-3 text-center border-0">
-                <button type="button" (click)="eliminarItem(item.idJuego)" class="btn btn-danger btn-sm px-3">
+                <button type="button" (click)="eliminarItem(item.juego.idjuegos)" class="btn btn-danger btn-sm px-3">
                   <i class="bi bi-trash3-fill"></i> Eliminar
                 </button>
               </td>
