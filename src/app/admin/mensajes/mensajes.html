@@ -16,14 +16,14 @@
         </tr>
       </thead>
       <tbody>
-        @for (m of lstMensajes; track $index) {
+        @for (m of mensajes; track $index) {
           <tr>
-            <td>{{ m.idMensaje }}</td>
-            <td class="text-nowrap">{{ m.fechaEnvio }}</td>
-            <td>{{ m.cliente?.nombres }} {{ m.cliente?.apellidos }}</td>
-            <td>{{ m.cliente?.correo }}</td>
-            <td>{{ m.cliente?.telefono }}</td>
-            <td class="text-break" style="min-width: 250px; max-width: 400px;">{{ m.mensaje }}</td>
+            <td>{{ m.idmensaje }}</td>
+            <td class="text-nowrap">{{ m.fechaenvio | date:'dd/MM/yyyy'}}</td>
+            <td>{{ m.nombres }}</td>
+            <td>{{ m.correo }}</td>
+            <td>{{ m.telefono }}</td>
+            <td class="text-break" style="min-width: 250px; max-width: 400px;">{{ m.textomensaje }}</td>
           </tr>
         } @empty {
           <tr>
@@ -32,5 +32,8 @@
         }
       </tbody>
     </table>
+    <p class="text-white">Cantidad: {{ mensajes.length }}</p>
+
+
   </div>
 </div>
