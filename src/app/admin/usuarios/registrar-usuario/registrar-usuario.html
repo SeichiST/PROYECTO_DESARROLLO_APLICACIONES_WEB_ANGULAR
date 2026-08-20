@@ -6,7 +6,7 @@
       <div class="row mb-3">
         <div class="col-md-6">
           <label class="form-label text-white">ID Cliente</label>
-          <input type="text" class="form-control" [value]="cliente.idCliente" readonly>
+          <input type="text" class="form-control" [value]="cliente.idcliente ?? ''" readonly>
         </div>
         <div class="col-md-6">
           <label class="form-label text-white">Estado</label>
@@ -60,7 +60,7 @@
         </div>
         <div class="col-md-6">
           <label class="form-label text-white">Fecha de Nacimiento</label>
-          <input type="date" class="form-control" name="fechaNacimiento" [(ngModel)]="cliente.fechaNacimiento" required>
+          <input type="date" class="form-control" name="fechaNacimiento" [(ngModel)]="cliente.fechanacimiento" required>
         </div>
       </div>
 
@@ -71,7 +71,7 @@
         </div>
         <div class="col-md-6">
           <label class="form-label text-white">Rol de Usuario</label>
-          <select class="form-select" name="rol" [(ngModel)]="cliente.rol" required>
+          <select class="form-select" name="rol" [(ngModel)]="rolSeleccionado" required>
             <option value="" disabled selected>Seleccione un rol</option>
             <option value="CLIENTE">Cliente</option>
             <option value="ADMIN">Administrador</option>
