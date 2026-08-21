@@ -14,12 +14,12 @@
         </tr>
       </thead>
       <tbody>
-        @for (categoria of lstCategorias; track $index) {
+        @for (categoria of lstCategorias; track categoria.idcategoria) {
           <tr>
-            <td>{{ categoria.idCategoria }}</td>
+            <td>{{ categoria.idcategoria }}</td>
             <td>{{ categoria.descripcion }}</td>
             <td class="text-center">
-              <button type="button" (click)="goModificarCategoria(categoria.idCategoria)" class="btn btn-sm btn-primary">Editar</button>
+              <button type="button" (click)="goModificarCategoria(categoria.idcategoria)" class="btn btn-sm btn-primary">Editar</button>
             </td>
           </tr>
         } @empty {

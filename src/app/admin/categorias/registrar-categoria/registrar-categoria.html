@@ -5,6 +5,12 @@
       <div class="col-md-6">
         <form (ngSubmit)="guardarCategoria()">
           <div class="col-md-12 mb-3">
+            <label class="form-label text-white">ID Categoría</label>
+            <input type="text" class="form-control" name="idcategoria" [(ngModel)]="categoria.idcategoria" required>
+            <small class="text-white-50">Formato: CATXXX (ej. CAT006)</small>
+          </div>
+
+          <div class="col-md-12 mb-3">
             <label class="form-label text-white">Descripción de la Categoría</label>
             <input type="text" class="form-control" name="descripcion" [(ngModel)]="categoria.descripcion" required>
           </div>

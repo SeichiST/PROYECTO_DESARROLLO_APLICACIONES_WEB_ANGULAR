@@ -12,15 +12,15 @@
         </tr>
       </thead>
       <tbody>
-        @for (v of lstVentas; track $index) {
+        @for (v of lstVentas; track v.idventa) {
           <tr>
-            <td>{{ v.idVenta }}</td>
-            <td>{{ v.cliente?.nombres }}</td>
-            <td>{{ v.fechaVenta }}</td>
-            <td class="text-end">S/. {{ v.montoTotal }}</td>
+            <td>{{ v.idventa }}</td>
+            <td>{{ v.cliente?.nombres }} {{ v.cliente?.apellidos }}</td>
+            <td>{{ v.fechaventa | date:'medium' }}</td>
+            <td class="text-end">S/. {{ v.montototal }}</td>
             <td class="text-center">
-              <button type="button" (click)="goDetalleVenta(v.idVenta)" class="btn btn-sm btn-info text-white me-2">Ver Productos</button>
-              <button type="button" (click)="descargarBoleta(v.idVenta)" class="btn btn-sm btn-danger">
+              <button type="button" (click)="goDetalleVenta(v.idventa!)" class="btn btn-sm btn-info text-white me-2">Ver Productos</button>
+              <button type="button" (click)="descargarBoleta(v.idventa!)" class="btn btn-sm btn-danger">
                 <i class="bi bi-file-pdf"></i> PDF
               </button>
             </td>

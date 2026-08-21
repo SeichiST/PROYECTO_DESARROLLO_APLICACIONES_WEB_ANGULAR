@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { Categoria } from '../../../model/Categoria';
+import { CategoriaService } from '../../../service/categoriaservice';
 
 @Component({
   selector: 'app-registrar-categoria',
@@ -10,13 +12,23 @@ import { FormsModule } from '@angular/forms';
 })
 export class RegistrarCategoria {
   private router = inject(Router);
+  private categoriaService = inject(CategoriaService);
 
-  categoria: any = {
+  categoria: Categoria = {
+    idcategoria: '',
     descripcion: ''
   };
 
   guardarCategoria() {
-    console.log('Guardando categoría:', this.categoria);
+    this.categoriaService.registrarCategoria(this.categoria).subscribe({
+      next: (res) => {
+        console.log('Categoría registrada correctamente:', res);
+        this.goListaCategorias();
+      },
+      error: (err) => {
+        console.error('Error al registrar categoría:', err);
+      }
+    });
   }
 
   goListaCategorias() {
