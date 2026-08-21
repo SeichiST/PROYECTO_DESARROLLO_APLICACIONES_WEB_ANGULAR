@@ -24,7 +24,8 @@ export class RegistrarJuego {
   juego: any = {
     descripcion: '',
     precio: 0,
-    categoria: { idCategoria: '' }
+    categoria: '',
+    activo: true
   };
 
   ngOnInit() {
@@ -47,13 +48,13 @@ export class RegistrarJuego {
       return;
     }
 
-    // Paso 1: subir la imagen primero
+
     this.imagenService.subirImagenJuego(this.selectedFile).subscribe({
       next: (res) => {
-        // Paso 2: con el nombre devuelto, arma el juego completo
+       
         this.juego.imagen = res.nombreArchivo;
-
-        // Paso 3: registra el juego con todos los datos ya listos
+        
+       
         this.juegoService.createJuego(this.juego).subscribe({
           next: () => {
             console.log("Juego registrado correctamente");
