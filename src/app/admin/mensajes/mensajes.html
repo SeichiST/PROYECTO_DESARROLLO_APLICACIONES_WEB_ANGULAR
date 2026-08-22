@@ -16,7 +16,7 @@
         </tr>
       </thead>
       <tbody>
-        @for (m of mensajes; track $index) {
+        @for (m of mensajesPaginados; track $index) {
           <tr>
             <td>{{ m.idmensaje }}</td>
             <td class="text-nowrap">{{ m.fechaenvio | date:'dd/MM/yyyy'}}</td>
@@ -34,6 +34,10 @@
     </table>
     <p class="text-white">Cantidad: {{ mensajes.length }}</p>
 
+    <app-paginador 
+      [paginaActual]="paginaActual" 
+      [totalPaginas]="totalPaginas" 
+      (onCambioPagina)="setPagina($event)" />
 
   </div>
 </div>

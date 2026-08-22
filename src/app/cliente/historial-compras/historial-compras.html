@@ -2,8 +2,10 @@
 
 <div class="container mt-5">
   <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="text-uppercase fw-bold m-0"><i class="bi bi-bag-heart-fill texto-acento"></i> Mis Compras</h2>
-    <button type="button" (click)="goInicio()" class="btn btn-cancelar px-4 py-2" style="max-width: 200px;">
+    <h2 class="text-uppercase fw-bold m-0 text-white">
+      <i class="bi bi-bag-heart-fill text-warning"></i> Mis Compras
+    </h2>
+    <button type="button" (click)="goInicio()" class="btn btn-outline-light px-4 py-2" style="max-width: 200px;">
       <i class="bi bi-house-door-fill me-2"></i>Ir al Inicio
     </button>
   </div>
@@ -19,17 +21,14 @@
         </tr>
       </thead>
       <tbody>
-        @for (v of lstVentas; track $index) {
+        @for (v of lstVentas; track v.idventa) {
           <tr>
-            <td>{{ v.idVenta }}</td>
-            <td>{{ v.fechaVenta }}</td>
-            <td class="text-end fw-bold texto-acento">S/. {{ v.montoTotal }}</td>
+            <td>#{{ v.idventa }}</td>
+            <td>{{ v.fechaventa | date:'dd/MM/yyyy HH:mm' }}</td>
+            <td class="text-end fw-bold text-warning">S/. {{ v.montototal }}</td>
             <td class="text-center">
-              <button type="button" (click)="goDetalleCompra(v.idVenta)" class="btn btn-sm btn-info text-white me-2">
+              <button type="button" (click)="goDetalleCompra(v.idventa)" class="btn btn-sm btn-info text-white me-2">
                 <i class="bi bi-eye-fill"></i> Ver Detalles
-              </button>
-              <button type="button" (click)="descargarBoleta(v.idVenta)" class="btn btn-sm btn-danger">
-                <i class="bi bi-file-pdf"></i> PDF
               </button>
             </td>
           </tr>

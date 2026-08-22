@@ -6,11 +6,12 @@ import { JuegoService } from '../../dashboard/juego/juegoservice';
 import { Juego } from '../../model/Juego';
 import { CategoriaService } from '../../service/categoriaservice';
 import { Categoria } from '../../model/Categoria';
+import { Paginador } from '../../fragments/paginador/paginador';
 
 
 @Component({
   selector: 'app-juegos',
-  imports: [Header, Footer],
+  imports: [Header, Footer, Paginador],
   templateUrl: './juegos.html',
   styleUrl: './juegos.css'
 })
@@ -46,19 +47,35 @@ export class Juegos implements OnInit {
     });
   }
 
-
   filtrarPorCategoria(idCategoria: string) {
-  if (idCategoria === '') {
-    this.lstJuegosFiltrados = this.lstJuegos;
-    return;
+    this.paginaActual = 1;
+    if (idCategoria === '') {
+      this.lstJuegosFiltrados = this.lstJuegos;
+      return;
+    }
+    this.lstJuegosFiltrados = this.lstJuegos.filter(
+      juego => juego.categoria.idcategoria === idCategoria
+    );
   }
-
-  this.lstJuegosFiltrados = this.lstJuegos.filter(
-    juego => juego.categoria.idcategoria === idCategoria
-  );
-}
 
   goDetallesJuego(id: number) {
     this.router.navigate(['/producto/detalles-juego', id]);
   }
+
+  paginaActual: number = 1;
+elementosPorPagina: number = 6;
+
+get juegosPaginados(): any[] {
+  const inicio = (this.paginaActual - 1) * this.elementosPorPagina;
+  return this.lstJuegosFiltrados.slice(inicio, inicio + this.elementosPorPagina);
+}
+
+get totalPaginas(): number {
+  return Math.ceil(this.lstJuegosFiltrados.length / this.elementosPorPagina);
+}
+
+setPagina(pagina: number) {
+  this.paginaActual = pagina;
+}
+
 }

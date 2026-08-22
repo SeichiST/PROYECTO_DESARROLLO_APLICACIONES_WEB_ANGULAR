@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        @for (v of lstVentas; track v.idventa) {
+        @for (v of ventasPaginadas; track v.idventa) {
           <tr>
             <td>{{ v.idventa }}</td>
             <td>{{ v.cliente?.nombres }} {{ v.cliente?.apellidos }}</td>
@@ -20,9 +20,6 @@
             <td class="text-end">S/. {{ v.montototal }}</td>
             <td class="text-center">
               <button type="button" (click)="goDetalleVenta(v.idventa!)" class="btn btn-sm btn-info text-white me-2">Ver Productos</button>
-              <button type="button" (click)="descargarBoleta(v.idventa!)" class="btn btn-sm btn-danger">
-                <i class="bi bi-file-pdf"></i> PDF
-              </button>
             </td>
           </tr>
         } @empty {
@@ -32,5 +29,9 @@
         }
       </tbody>
     </table>
+    <app-paginador 
+      [paginaActual]="paginaActual" 
+      [totalPaginas]="totalPaginas" 
+      (onCambioPagina)="setPagina($event)" />
   </div>
 </div>

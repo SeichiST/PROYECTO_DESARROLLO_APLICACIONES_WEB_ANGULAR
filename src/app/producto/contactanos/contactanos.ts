@@ -5,6 +5,7 @@ import { Header } from '../../fragments/header/header';
 import { Footer } from '../../fragments/footer/footer';
 import { AuthService } from '../../services/auth.service';
 import { UsuarioSesion } from '../../model/UsuarioSesion';
+import { MensajeService } from '../../service/mensajeservice';
 @Component({
   selector: 'app-contactanos',
   imports: [Header, Footer, FormsModule],
@@ -14,6 +15,7 @@ import { UsuarioSesion } from '../../model/UsuarioSesion';
 export class Contactanos implements OnInit {
   private router = inject(Router);
   private authService = inject(AuthService);
+  private mensajeService = inject(MensajeService);
 
   usuarioLogueado: UsuarioSesion | null = null;
   textoMensaje: string = '';
@@ -30,8 +32,26 @@ export class Contactanos implements OnInit {
       return;
     }
 
-    alert(`¡Gracias por contactarnos, ${this.usuarioLogueado?.nombres}`);
-    this.textoMensaje = '';
+    if (!this.usuarioLogueado?.idcliente) {
+      alert('Debes iniciar sesión para enviar un mensaje.');
+      return;
+    }
+
+    const payload = {
+      idcliente: this.usuarioLogueado.idcliente,
+      textomensaje: this.textoMensaje
+    };
+
+    this.mensajeService.enviarMensaje(payload).subscribe({
+      next: () => {
+        alert(`¡Gracias por contactarnos, ${this.usuarioLogueado?.nombres}! Tu mensaje fue enviado.`);
+        this.textoMensaje = '';
+      },
+      error: (err) => {
+        console.error('Error al enviar el mensaje:', err);
+        alert('Hubo un error al enviar el mensaje. Intenta nuevamente.');
+      }
+    });
   }
 
   goInicio() {

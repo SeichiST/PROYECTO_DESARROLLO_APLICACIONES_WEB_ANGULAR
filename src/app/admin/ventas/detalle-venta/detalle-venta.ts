@@ -15,23 +15,33 @@ export class DetalleVenta implements OnInit {
   private ventasService = inject(VentasService);
   private cdr = inject(ChangeDetectorRef);
 
+  idVenta: number | null = null;
   lstDetalles: any[] = [];
   totalMonto: number = 0;
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    if (id) {
-      this.ventasService.getVentaDetalle(id).subscribe({
-        next: (res: VentaDetalleResponse) => {
-          this.lstDetalles = res.detalles;
-          this.totalMonto = res.montoTotal;
-          this.cdr.detectChanges();
-        },
-        error: (err) => {
-          console.error('Error al cargar detalle de venta:', err);
-        }
-      });
-    }
+    this.route.paramMap.subscribe(params => {
+      const paramId = params.get('id') || params.get('idVenta') || params.get('idventa');
+      console.log('ID capturado de la URL:', paramId);
+      if (paramId) {
+        this.idVenta = Number(paramId);
+        this.cargarDetalles(this.idVenta);
+      }
+    });
+  }
+
+  cargarDetalles(id: number) {
+    this.ventasService.getVentaDetalle(id).subscribe({
+      next: (res: VentaDetalleResponse) => {
+        console.log('Detalles recibidos del backend:', res);
+        this.lstDetalles = res.detalles || [];
+        this.totalMonto = res.montoTotal || 0;
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        console.error('Error al cargar detalle de venta:', err);
+      }
+    });
   }
 
   goListaVentas() {

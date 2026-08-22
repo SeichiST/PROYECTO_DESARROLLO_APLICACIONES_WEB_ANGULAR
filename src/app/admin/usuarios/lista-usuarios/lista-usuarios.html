@@ -17,7 +17,7 @@
         </tr>
       </thead>
       <tbody>
-        @for (cliente of usuarioList; track $index) {
+        @for (cliente of usuariosPaginados; track $index) {
           <tr>
             <td>{{ cliente.idcliente }}</td>
             <td>{{ cliente.nombres }} {{ cliente.apellidos }}</td>
@@ -41,5 +41,9 @@
         }
       </tbody>
     </table>
+    <app-paginador 
+      [paginaActual]="paginaActual" 
+      [totalPaginas]="totalPaginas" 
+      (onCambioPagina)="setPagina($event)" />
   </div>
 </div>

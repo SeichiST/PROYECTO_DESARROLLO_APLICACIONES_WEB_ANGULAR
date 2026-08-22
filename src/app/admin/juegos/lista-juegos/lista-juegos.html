@@ -20,7 +20,7 @@
           </tr>
         </thead>
         <tbody>
-          @for (item of juegoList; track $index) {
+          @for (item of juegosPaginados; track $index) {
             <tr style="cursor: pointer;" (click)="goDetailJuego(item.idjuegos)">
               <th scope="row" class="text-center">{{ item.idjuegos }}</th>
               <td><img [src]="'http://localhost:8085/uploads/juegos/' + item.imagen" class="img-fluid" style="max-height: 70px;" alt="Portada"></td>
@@ -36,4 +36,8 @@
       </table>
     </div>
   </div>
+  <app-paginador 
+  [paginaActual]="paginaActual" 
+  [totalPaginas]="totalPaginas" 
+  (onCambioPagina)="setPagina($event)" />
 </div>

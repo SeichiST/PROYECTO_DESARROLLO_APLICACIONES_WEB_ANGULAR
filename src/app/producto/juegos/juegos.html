@@ -24,7 +24,7 @@
       <div class="col-md-9" id="zona-juegos">
         <h2 class="text-white mb-4">Juegos</h2>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-          @for (juego of lstJuegosFiltrados; track $index)  {
+          @for (juego of juegosPaginados; track $index)  {
             <div class="col">
               <div class="GameCardLink text-decoration-none" style="cursor: pointer;" (click)="goDetallesJuego(juego.idjuegos)">
                 <div class="h-100 d-flex flex-column" style="border-radius: 12px; background-color: rgba(255,255,255,0.05); padding-bottom: 10px;">
@@ -43,6 +43,10 @@
             </div>
           }
         </div>
+          <app-paginador 
+            [paginaActual]="paginaActual" 
+            [totalPaginas]="totalPaginas" 
+            (onCambioPagina)="setPagina($event)" />
       </div>
     </div>
   </div>

@@ -2,11 +2,12 @@ import { ChangeDetectorRef,Component, inject, OnInit } from '@angular/core';
 import { MensajeService } from '../../service/mensajeservice';
 import { Mensaje } from '../../model/Mensaje';
 import { DatePipe } from '@angular/common';
+import { Paginador } from '../../fragments/paginador/paginador';
 
 
 @Component({
   selector: 'app-mensajes',
-  imports: [DatePipe],
+  imports: [DatePipe, Paginador],
   templateUrl: './mensajes.html',
   styleUrl: './mensajes.css'
 })
@@ -15,6 +16,8 @@ export class Mensajes implements OnInit {
   private cdr = inject(ChangeDetectorRef);
 
   mensajes: Mensaje[] = [];
+  paginaActual: number = 1;
+  elementosPorPagina: number = 10;
 
   ngOnInit(): void {
     console.log('ngOnInit');
@@ -34,5 +37,17 @@ export class Mensajes implements OnInit {
         }
       })
     }
+    get mensajesPaginados(): any[] {
+    const inicio = (this.paginaActual - 1) * this.elementosPorPagina;
+    return this.mensajes.slice(inicio, inicio + this.elementosPorPagina);
+  }
+
+  get totalPaginas(): number {
+    return Math.ceil(this.mensajes.length / this.elementosPorPagina);
+  }
+
+  setPagina(pagina: number) {
+    this.paginaActual = pagina;
+  }
 
   }

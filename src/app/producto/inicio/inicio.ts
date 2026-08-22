@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Header } from '../../fragments/header/header';
@@ -15,6 +15,7 @@ import { UsuarioSesion } from '../../model/UsuarioSesion';
 export class Inicio implements OnInit{
   private router = inject(Router);
   private authService = inject(AuthService);
+  private cdr = inject(ChangeDetectorRef)
 
   usuarioLogueado: UsuarioSesion | null = null;
 
@@ -26,6 +27,7 @@ export class Inicio implements OnInit{
   ngOnInit() {
     this.authService.usuario$.subscribe((user) => {
       this.usuarioLogueado = user;
+      this.cdr.detectChanges();
     });
   }
 
@@ -41,6 +43,8 @@ export class Inicio implements OnInit{
     }).subscribe({
       next: (user) => {
         console.log('Usuario autenticado:', user);
+        this.loginData = { email: '', password: '' };
+        this.cdr.detectChanges();
       },
       error: (err) => {
         alert(err.error?.mensaje || 'Error al iniciar sesión');

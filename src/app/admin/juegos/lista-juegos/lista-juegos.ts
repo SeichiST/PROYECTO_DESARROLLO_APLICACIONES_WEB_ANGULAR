@@ -2,10 +2,11 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Juego } from '../../../model/Juego';
 import { Juegoservice } from '../../../service/juegoservice';
+import { Paginador } from "../../../fragments/paginador/paginador";
 
 @Component({
   selector: 'app-lista-juegos',
-  imports: [],
+  imports: [Paginador],
   templateUrl: './lista-juegos.html',
   styleUrl: './lista-juegos.css'
 })
@@ -40,4 +41,20 @@ export class ListaJuegos implements OnInit {
       this.router.navigate(['/admin/modificar-juego', id]);
     }
   }
+
+  paginaActual: number = 1;
+elementosPorPagina: number = 10;
+
+get juegosPaginados(): any[] {
+  const inicio = (this.paginaActual - 1) * this.elementosPorPagina;
+  return this.juegoList.slice(inicio, inicio + this.elementosPorPagina);
+}
+
+get totalPaginas(): number {
+  return Math.ceil(this.juegoList.length / this.elementosPorPagina);
+}
+
+setPagina(pagina: number) {
+  this.paginaActual = pagina;
+}
 }
